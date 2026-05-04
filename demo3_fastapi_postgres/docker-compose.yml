@@ -1,0 +1,38 @@
+# docker compose конфигурация для fastapi + postgresql
+
+services:
+  # сервис веб-приложения
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    # команда запуска uvicorn с автоперезагрузкой
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+    # проброс порта 8000
+    ports:
+      - "8000:8000"
+    # зависимость от сервиса базы данных
+    depends_on:
+      - db
+    # переменные окружения
+    environment:
+      - DATABASE_URL=postgresql+asyncpg://demo_user:demo_password@db:5432/demo_db
+
+  # сервис базы данных postgresql
+  db:
+    image: postgres:16-alpine
+    # монтирование тома для сохранения данных
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    # параметры подключения к базе данных
+    environment:
+      - POSTGRES_USER=demo_user
+      - POSTGRES_PASSWORD=demo_password
+      - POSTGRES_DB=demo_db
+    # проброс порта для внешнего доступа (опционально)
+    ports:
+      - "5432:5432"
+
+# определение томов
+volumes:
+  postgres_data:

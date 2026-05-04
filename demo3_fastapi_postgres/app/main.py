@@ -5,9 +5,9 @@ from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy import select, text
 
-from database import get_session, engine, Base
-from models import Item
-from schemas import ItemCreate, ItemResponse
+from .database import get_session, engine, Base
+from .models import Item
+from .schemas import ItemCreate, ItemResponse
 
 app = FastAPI(
     title="Demo Store API",

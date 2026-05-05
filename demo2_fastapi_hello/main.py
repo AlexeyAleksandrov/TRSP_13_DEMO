@@ -1,10 +1,10 @@
-# простое fastapi приложение для демонстрации контейнеризации
+# простое fastapi приложение
 
 from fastapi import FastAPI
 
 app = FastAPI(
     title="Demo API",
-    description="Демонстрационное API для практического занятия"
+    description="TRSP_13_DEMO"
 )
 
 

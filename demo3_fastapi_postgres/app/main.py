@@ -1,5 +1,4 @@
 # fastapi приложение с подключением к postgresql
-# демонстрация работы docker compose
 
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -11,7 +10,7 @@ from .schemas import ItemCreate, ItemResponse
 
 app = FastAPI(
     title="Demo Store API",
-    description="Демонстрационное API магазина с PostgreSQL"
+    description="TRSP_13_DEMO"
 )
 
 
